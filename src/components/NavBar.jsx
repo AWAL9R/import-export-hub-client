@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { IoMenu } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
     const [show, setShow] = useState(false);
-    const userImage = null; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
+    const {user,logOut}=useContext(AuthContext)
+    // console.log(user)
+    const userImage = user?.photoURL; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
 
     const navLinks = <>
         <NavLink to='/'>
@@ -19,7 +23,7 @@ const NavBar = () => {
         <NavLink to='/exports/add'>
             Add Export
         </NavLink>
-        {userImage?<button className='btn btn-soft'>Logout</button>:""}
+        {userImage?<button className='btn btn-soft' onClick={logOut}>Logout</button>:""}
         </>
 
     return (
@@ -35,7 +39,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className='flex gap-2 items-center'>
-                        {userImage ? <img src={userImage} className='w-13 max-[600px]:w-9 aspect-square rounded-full' /> : <div className='max-[500px]:hidden'> <Link to='/login'> <button className="btn btn-primary">Login</button> </Link> </div>}
+                        {userImage ? <img src={userImage} className='w-13 max-[600px]:w-9 aspect-square rounded-full' referrerPolicy="no-referrer" /> : <div className='max-[500px]:hidden'> <Link to='/login'> <button className="btn btn-primary">Login</button> </Link> </div>}
                         <div className='hidden max-[600px]:block'> <IoMenu onClick={() => setShow(!show)} className='btn bg-white px-[3px]' /> </div>
                     </div>
                 </div>
