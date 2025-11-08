@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+html{
+  @apply bg-base-200;
+}
+
+h1{
+  @apply text-5xl max-[800px]:text-4xl max-[600px]:text-3xl max-[400px]:text-2xl;
+}
