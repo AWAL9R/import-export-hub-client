@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router';
 const ErrorPage = () => {
     const navigate = useNavigate()
     return (
-        <div className="min-h-screen flex items-center ">
-            <div className="flex items-center gap-3 flex-col lg:flex-row bg-white shadow-2xl rounded-md w-9/10 mx-auto p-4">
+        <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center ">
+            <div className="container flex items-center justify-evenly gap-3 flex-col lg:flex-row bg-white shadow-2xl rounded-md p-4">
                 <img
                     src="/oops.webp"
                     className="max-w-sm w-1/1 rounded-lg"

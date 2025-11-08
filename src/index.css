@@ -11,3 +11,25 @@ html{
 h1{
   @apply text-5xl max-[800px]:text-4xl max-[600px]:text-3xl max-[400px]:text-2xl;
 }
+
+
+h2{
+  @apply text-4xl max-[800px]:text-3xl max-[600px]:text-2xl max-[400px]:text-xl;
+}
+
+
+.navbar{
+  @apply border-b border-gray-300;
+}
+.navbar h1{
+  @apply max-[450px]:text-2xl max-[400px]:text-[22px];
+}
+
+.navbar .active{
+  @apply border-b-2;
+}
+
+
+.container {
+  @apply w-9/10 mx-auto max-w-[1440px]
+}

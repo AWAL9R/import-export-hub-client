@@ -7,19 +7,24 @@ import { RouterProvider } from "react-router/dom";
 import ErrorPage from './pages/ErrorPage';
 import MainLayout from './layouts/MainLayout';
 import AuthContextProvider from './context/AuthContextProvider';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-
+      {
+        path: "/login",
+        element: <LoginPage />
+      },
+      {
+        path: "*",
+        element: <ErrorPage />
+      }
     ]
   },
-  {
-    path: "*",
-    element: <ErrorPage />
-  }
+
 ]);
 
 createRoot(document.getElementById('root')).render(
