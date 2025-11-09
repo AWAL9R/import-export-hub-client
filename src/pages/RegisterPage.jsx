@@ -2,10 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import { auth } from '../firebase/firebase';
 import toast from 'react-hot-toast';
+import { updateProfile } from 'firebase/auth';
 
-const LoginPage = () => {
-    const { signInWithPassword, googleSignin } = useContext(AuthContext);
+
+const RegisterPage = () => {
+    const {setUser, signUpWithPassword, googleSignin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
     const navigate=useNavigate();
 
@@ -14,25 +17,38 @@ const LoginPage = () => {
     // console.log(params.get("next"))
     const next = decodeURIComponent(params.get("next") || '') || "/";
 
-
     const googleLogin = () => {
         googleSignin()
             .then(() => { 
                 navigate(next)
             })
             .catch((err) => {
-                toast(err)
+                alert(err)
             })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const name=e.target.name.value;
         const email=e.target.email.value;
+        const photo=e.target.photo.value;
         const password=e.target.password.value;
-        console.log(email, password)
-        signInWithPassword(email, password)
+        // console.log(name, email, photo, password)
+        signUpWithPassword(email, password)
         .then(()=>{
-            navigate(next)
+            updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                    .then(() => {
+                        toast("Profile updated")
+                        setUser({ ...auth.currentUser })
+                        navigate(next)
+                    })
+                    .catch(err => {
+                        toast(err.message)
+                        navigate(next)
+                    });
         })
         .catch(err=>{
             toast("Error: "+err.message);
@@ -44,19 +60,25 @@ const LoginPage = () => {
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
             <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10  bg-white shadow-2xl rounded-md p-4 flex flex-col items-center justify-center">
                 <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3'>
-                    <h1 className='font-bold mb-5 text-center text-primary'>LOGIN</h1>
+                    <h1 className='font-bold mb-5 text-center text-primary'>REGISTER</h1>
+                    <h2 className='text-secondary'>Name:</h2>
+                    <input type="text" name='name' className='input w-full' placeholder='Enter your full name' required />
+
                     <h2 className='text-secondary'>Email:</h2>
                     <input type="email" name='email' className='input w-full' placeholder='Enter your email address' required />
+
+                    <h2 className='text-secondary'>PhotoURL:</h2>
+                    <input type="url" name='photo' className='input w-full' placeholder='Enter profile picture url' required />
+
                     <h2 className='text-secondary'>Password:</h2>
                     <div className='relative'>
                         <input type={showPass ? 'text' : 'password'} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
-                    <div className='hidden'> Forget password? recover <Link to={`/recover${location.search}`} className='text-primary hover:underline'>here</Link> </div>
 
                     <input type="submit" value="Login" className='btn btn-primary w-full' />
 
-                     <div> New to our site? register <Link to={`/register${location.search}`} className='text-primary'>here</Link></div>
+                    <div> Already have an account? login <Link to={`/login${location.search}`} className='text-primary'>here</Link></div>
 
                     <div className='divider'>Social login</div>
 
@@ -65,11 +87,11 @@ const LoginPage = () => {
                         Login with Google
                     </button>
 
-                   
+
                 </form>
             </div>
         </div>
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

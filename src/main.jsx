@@ -10,6 +10,7 @@ import AuthContextProvider from './context/AuthContextProvider';
 import LoginPage from './pages/LoginPage';
 import { Toaster } from 'react-hot-toast';
 import PrivateComponent from './components/PrivateComponent';
+import RegisterPage from './pages/RegisterPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />
       },
       {
         path:"/me/exports",
