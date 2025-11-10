@@ -21,7 +21,7 @@ const LoginPage = () => {
                 navigate(next)
             })
             .catch((err) => {
-                toast(err)
+                toast(err.message)
             })
     }
 
@@ -32,6 +32,7 @@ const LoginPage = () => {
         console.log(email, password)
         signInWithPassword(email, password)
         .then(()=>{
+            toast("Logged In...")
             navigate(next)
         })
         .catch(err=>{

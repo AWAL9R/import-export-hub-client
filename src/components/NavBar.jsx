@@ -11,16 +11,16 @@ const NavBar = () => {
     const userImage = user?.photoURL; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
 
     const navLinks = <>
-        <NavLink to='/'>
+        <NavLink to='/all'>
             All Products
         </NavLink>
-        <NavLink to='/me/exports'>
+        {userImage?<NavLink to='/me/exports'>
             My Exports
-        </NavLink>
-        <NavLink to='/me/imports'>
+        </NavLink>:""}
+        {userImage?<NavLink to='/me/imports'>
             My Imports
-        </NavLink>
-        <NavLink to='/exports/add'>
+        </NavLink>:""}
+        <NavLink to='/add/exports'>
             Add Export
         </NavLink>
         {userImage?<button className='btn btn-soft' onClick={logOut}>Logout</button>:""}

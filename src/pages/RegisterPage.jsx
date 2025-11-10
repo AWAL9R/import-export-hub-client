@@ -23,7 +23,7 @@ const RegisterPage = () => {
                 navigate(next)
             })
             .catch((err) => {
-                alert(err)
+                toast(err.message)
             })
     }
 

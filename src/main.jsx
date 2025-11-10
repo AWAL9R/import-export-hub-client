@@ -11,6 +11,10 @@ import LoginPage from './pages/LoginPage';
 import { Toaster } from 'react-hot-toast';
 import PrivateComponent from './components/PrivateComponent';
 import RegisterPage from './pages/RegisterPage';
+import AddExports from './pages/AddExports';
+import ProductPage from './pages/ProductPage';
+import { SERVER_URL } from './settings';
+import MyExports from './pages/MyExports';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +30,22 @@ const router = createBrowserRouter([
         element: <RegisterPage />
       },
       {
+        path:"/products/:id",
+        loader:({params})=>fetch(SERVER_URL+`/products/${params.id}`),
+        element: <PrivateComponent> <ProductPage/> </PrivateComponent>
+      },
+      {
         path:"/me/exports",
-        element: <PrivateComponent> Hello </PrivateComponent>
+        element: <PrivateComponent> <MyExports/> </PrivateComponent>
+      },
+      {
+        path:"/add/exports",
+        element: <PrivateComponent> <AddExports key="add" /> </PrivateComponent> 
+      },
+      {
+        path:"/editProduct/:id",
+        loader:({params})=>fetch(SERVER_URL+`/products/${params.id}`),
+        element: <PrivateComponent> <AddExports key="edit" /> </PrivateComponent> 
       },
       {
         path: "*",
