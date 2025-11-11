@@ -8,13 +8,18 @@ html{
   @apply bg-base-200;
 }
 
-h1{
+h1, .h1{
   @apply text-5xl max-[800px]:text-4xl max-[600px]:text-3xl max-[400px]:text-2xl;
 }
 
 
-h2{
+h2, .h2{
   @apply text-4xl max-[800px]:text-3xl max-[600px]:text-2xl max-[400px]:text-xl;
+}
+
+
+h3, .h3{
+  @apply text-3xl max-[800px]:text-2xl max-[600px]:text-xl max-[400px]:text-lg;
 }
 
 

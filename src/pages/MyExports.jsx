@@ -3,26 +3,40 @@ import { AuthContext } from '../context/AuthContext';
 import { SERVER_URL } from '../settings';
 import Loading from '../components/Loading';
 import ExportView from '../components/ExportView';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import AddExports from './AddExports';
+import Modal from '../components/Modal';
 
 
-const MyExportsView = ({ dataPromise }) => {
+export const MyExportsView = ({ dataPromise }) => {
     const data = use(dataPromise)
     const [products, setProducts] = useState(data);
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+
+     const [updateable, setUpdateable] = useState(null);
 
     const afterDelete = (id) => {
         setProducts([...products.filter(item => item._id != id)])
     }
 
 
-
-    const onUpdate = (product) => { 
-        navigate("/editProduct/"+product._id)
+    const afterChanges = (old, newData)=>{
+      const newProducts=products.map(item=>{
+        if(old._id==item._id){
+            return {...item, ...newData}
+        }
+        return item;
+      })
+      setProducts(newProducts)
+      setUpdateable(null)
     }
-    
+    const onUpdate = (product) => {
+        setUpdateable(product)
+        // navigate("/editProduct/" + product._id) //or can be edited on new page
+    }
+
     const onDelete = (product) => {
         Swal.fire({
             title: `Are you sure to delete '${product.name}'?`,
@@ -57,13 +71,18 @@ const MyExportsView = ({ dataPromise }) => {
     }
 
     return (
-        <div className='my-10'>
-            <div className="container">
-                {products.length == 0 ? <h2>You do not have any exported product. <Link to="/add/exports" className='text-primary'>Add one</Link></h2> : ""}
-                {products.map(item => <ExportView key={item._id} afterDelete={afterDelete} data={item} onUpdate={onUpdate} onDelete={onDelete} />)}
+        <>
+            <Modal isOpen={updateable!=null} onClose={() => setUpdateable(null)}>
+                <AddExports product={updateable} afterChanges={afterChanges} />
+            </Modal>
 
+            <div className='my-10'>
+                <div className="container">
+                    {products.length == 0 ? <h2>You do not have any exported product. <Link to="/add/exports" className='text-primary'>Add one</Link></h2> : ""}
+                    {products.map(item => <ExportView key={item._id} afterDelete={afterDelete} data={item} onUpdate={onUpdate} onDelete={onDelete} />)}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

@@ -15,12 +15,27 @@ import AddExports from './pages/AddExports';
 import ProductPage from './pages/ProductPage';
 import { SERVER_URL } from './settings';
 import MyExports from './pages/MyExports';
+import HomePage from './pages/HomePage';
+import LoadingError from './components/LoadingError';
+import Loading from './components/Loading';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <LoadingError />,
+    HydrateFallback:Loading,
     children: [
+      {
+        index: true,
+        loader: () => fetch(SERVER_URL + `/products?limit=6`),
+        element: <HomePage key='home' fkey="home" />
+      },
+      {
+        path:"/all",
+        loader: () => fetch(SERVER_URL + `/products?limit=100`),
+        element: <HomePage key='all' fkey="all" />
+      },
       {
         path: "/login",
         element: <LoginPage />
@@ -30,22 +45,22 @@ const router = createBrowserRouter([
         element: <RegisterPage />
       },
       {
-        path:"/products/:id",
-        loader:({params})=>fetch(SERVER_URL+`/products/${params.id}`),
-        element: <PrivateComponent> <ProductPage/> </PrivateComponent>
+        path: "/products/:id",
+        loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
+        element: <PrivateComponent> <ProductPage /> </PrivateComponent>
       },
       {
-        path:"/me/exports",
-        element: <PrivateComponent> <MyExports/> </PrivateComponent>
+        path: "/me/exports",
+        element: <PrivateComponent> <MyExports /> </PrivateComponent>
       },
       {
-        path:"/add/exports",
-        element: <PrivateComponent> <AddExports key="add" /> </PrivateComponent> 
+        path: "/add/exports",
+        element: <PrivateComponent> <AddExports key="add" /> </PrivateComponent>
       },
       {
-        path:"/editProduct/:id",
-        loader:({params})=>fetch(SERVER_URL+`/products/${params.id}`),
-        element: <PrivateComponent> <AddExports key="edit" /> </PrivateComponent> 
+        path: "/editProduct/:id",
+        loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
+        element: <PrivateComponent> <AddExports key="edit" /> </PrivateComponent>
       },
       {
         path: "*",
