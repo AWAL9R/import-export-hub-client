@@ -20,6 +20,7 @@ const ImportView = ({ data, onDelete }) => {
                     <p>
                         Exporter: <b>{data.user.name}</b>
                     </p>
+                    <Link className='btn btn-link' to={'/products/' + product._id}> See Details</Link>
                 </div>
                 <button className="btn btn-warning" onClick={()=>onDelete(data)}>Delete</button>
             </div>
