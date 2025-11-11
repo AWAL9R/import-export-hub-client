@@ -32,7 +32,7 @@ const NavBar = () => {
         <NavLink to='/add/exports' className={navClasses}>
             Add Export
         </NavLink>
-        {userImage ? <button className='btn btn-soft' onClick={logOut}>Logout</button> : ""}
+        
 
         <label className="label font-semibold  text-primary">
             <input
@@ -44,6 +44,8 @@ const NavBar = () => {
             />
             Dark
         </label>
+
+        {userImage ? <button className='btn btn-soft' onClick={logOut}>Logout</button> : ""}
     </>
 
     return (

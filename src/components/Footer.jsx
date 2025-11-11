@@ -4,8 +4,8 @@ import { MdEmail } from 'react-icons/md';
 
 const Footer = () => {
     return (
-        <div className='bg-accent-content text-white mt-10 py-5 px-10'>
-            <div className='flex flex-wrap justify-between gap-5'>
+        <div className='bg-accent-content text-white mt-10 py-10 px-10'>
+            <div className='flex flex-wrap justify-between gap-5 pb-5'>
                 <div className='max-w-150 space-y-3'>
                     <h2>ExportMania</h2>
                     <p className='text-gray-200 text-justify'>

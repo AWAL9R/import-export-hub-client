@@ -85,7 +85,7 @@ const ProductPage = () => {
                             <div>Available: {product.quantity}</div>
                         </div>
                         <div>Exporter: <b>{product.user.name}</b></div>
-                        {product.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium'>OUT OF STOCK</div>:<button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button>}
+                        {product.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium opacity-60'>OUT OF CAPACITY</div>:<button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button>}
                     </div>
                 </div>
             </div>

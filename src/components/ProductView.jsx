@@ -20,14 +20,18 @@ const ProductView = ({ data }) => {
     //     </div>
     // );
     return (
-        <div className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-102 p-5 flex flex-col items-center text-center">
-            <img
+        <div className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform ">
+            <div className='w-full relative '>
+                <img
                 src={data.photo}
                 alt={data.name}
-                className="aspect-square w-full object-cover rounded-xl mb-3" />
-            {data.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium'>OUT OF STOCK</div>:""}
+                className="aspect-square w-full object-cover rounded-t-xl mb-3" />
+                {data.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium absolute top-0 opacity-60 rounded-t-xl'>OUT OF CAPACITY</div>:""}
+            </div>
+            
 
-            <h2 className="text-lg font-semibold text-accent ">
+            <div className='p-5 flex flex-col items-center justify-between text-center'>
+                <h2 className="text-lg font-semibold text-accent ">
                 {data.name}
             </h2>
             <h3 className="text-blue-600 font-medium mb-2">{data.price} USD</h3>
@@ -43,6 +47,7 @@ const ProductView = ({ data }) => {
                 <span>🌍 {countries[data.country]}</span>
                 <span>⭐ {data.rating}</span>
                 <span>🛒 {data.quantity} left</span>
+            </div>
             </div>
         </div>
 
