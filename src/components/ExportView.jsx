@@ -18,7 +18,7 @@ const ExportView = ({ data: product, onUpdate, onDelete }) => {
     // );
 
     return (
-        <div className="bg-white shadow-md rounded-md flex flex-wrap items-center justify-between p-3 my-3 gap-4 text-sm">
+        <div className="bg-base-100 shadow-md rounded-md flex flex-wrap items-center justify-between p-3 my-3 gap-4 text-sm">
             <img src={product.photo} alt={product.name} className="w-30 aspect-square rounded object-cover " />
             <div className="flex-1">
                 <Link className=' font-medium text-xl whitespace-nowrap truncate sm:whitespace-normal' to={'/products/' + product._id}>{product.name}</Link>

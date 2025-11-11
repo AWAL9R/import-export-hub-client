@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: light --default;
+  themes: light --default, dark;
 }
+
+[data-theme="dark"] {
+  /* --primary: #8b5cf6;
+  --secondary: #f472b6;
+  --base-100: #111827;
+  --text-base: #ffffff; */
+  --color-accent-content: #1f2937;
+  --color-base-100: #1f2937;
+}
+
 
 html{
   @apply bg-base-200;
@@ -24,7 +34,7 @@ h3, .h3{
 
 
 .navbar{
-  @apply border-b border-gray-300;
+  @apply border-b border-b-base-300;
 }
 .navbar h1{
   @apply max-[450px]:text-2xl max-[400px]:text-[22px];

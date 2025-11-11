@@ -70,7 +70,7 @@ const ProductPage = () => {
                 </div>
             </Modal>
 
-            <div className="container bg-white rounded-md shadow-md overflow-hidden ">
+            <div className="container bg-base-100 rounded-md shadow-md overflow-hidden ">
                 <div className='flex flex-wrap gap-3'>
                     <img src={product.photo} alt="" className='aspect-aquare w-1/3 max-lg:w-1/2 max-md:w-full object-cover  mb-3' />
                     <div className='py-5 space-y-4 px-3'>

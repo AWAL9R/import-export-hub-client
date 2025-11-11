@@ -6,35 +6,54 @@ import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
     const [show, setShow] = useState(false);
-    const {user,logOut}=useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const [dark, setDark] = useState(false)
+
+
+    const html = document.documentElement;
+    html.dataset.theme = dark ? "dark" : "light";
+
+
     // console.log(user)
     const userImage = user?.photoURL; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
 
+    const navClasses = 'font-semibold text-primary hover:border-b-2 hover:text-shadow-2xs';
+
     const navLinks = <>
-        <NavLink to='/all'>
+        <NavLink to='/all' className={navClasses}>
             All Products
         </NavLink>
-        {userImage?<NavLink to='/me/exports'>
+        {userImage ? <NavLink to='/me/exports' className={navClasses}>
             My Exports
-        </NavLink>:""}
-        {userImage?<NavLink to='/me/imports'>
+        </NavLink> : ""}
+        {userImage ? <NavLink to='/me/imports' className={navClasses}>
             My Imports
-        </NavLink>:""}
-        <NavLink to='/add/exports'>
+        </NavLink> : ""}
+        <NavLink to='/add/exports' className={navClasses}>
             Add Export
         </NavLink>
-        {userImage?<button className='btn btn-soft' onClick={logOut}>Logout</button>:""}
-        </>
+        {userImage ? <button className='btn btn-soft' onClick={logOut}>Logout</button> : ""}
+
+        <label class="label font-semibold  text-primary">
+            <input
+                type="checkbox"
+                // defaultChecked="checked"
+                className="toggle border-indigo-600 bg-indigo-500 checked:border-black checked:bg-gray-600 checked:text-black"
+                onClick={(e) => setDark(e.target.checked)}
+            />
+            Dark
+        </label>
+    </>
 
     return (
-        <div className="bg-white py-3 navbar">
+        <div className="bg-base-100 py-3 navbar">
             <div className='container '>
                 <div className='flex justify-between items-center gap-2'>
                     <Link to='/'>
                         <h1 className='font-bold text-primary'>ImportExport.App</h1>
                     </Link>
                     <div className='max-[1000px]:hidden'>
-                        <div className='flex flex-wrap justify-center items-center gap-2 *:font-semibold *:text-primary *:hover:border-b-2 *:hover:text-shadow-2xs'>
+                        <div className='flex flex-wrap justify-center items-center gap-2'>
                             {navLinks}
                         </div>
                     </div>

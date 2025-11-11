@@ -20,7 +20,7 @@ const ProductView = ({ data }) => {
     //     </div>
     // );
     return (
-        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-102 p-5 flex flex-col items-center text-center">
+        <div className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-102 p-5 flex flex-col items-center text-center">
             <img
                 src={data.photo}
                 alt={data.name}
@@ -39,7 +39,7 @@ const ProductView = ({ data }) => {
                 See Details
             </Link>
 
-            <div className="mt-4 w-full flex justify-between flex-wrap text-sm text-gray-600">
+            <div className="mt-4 w-full flex justify-between flex-wrap text-sm text-primary">
                 <span>🌍 {countries[data.country]}</span>
                 <span>⭐ {data.rating}</span>
                 <span>🛒 {data.quantity} left</span>
