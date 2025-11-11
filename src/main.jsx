@@ -18,6 +18,7 @@ import MyExports from './pages/MyExports';
 import HomePage from './pages/HomePage';
 import LoadingError from './components/LoadingError';
 import Loading from './components/Loading';
+import MyImports from './pages/MyImports';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/me/exports",
         element: <PrivateComponent> <MyExports /> </PrivateComponent>
+      },
+      {
+        path: "/me/imports",
+        element: <PrivateComponent> <MyImports /> </PrivateComponent>
       },
       {
         path: "/add/exports",

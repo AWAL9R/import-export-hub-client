@@ -25,8 +25,9 @@ const ProductView = ({ data }) => {
                 src={data.photo}
                 alt={data.name}
                 className="aspect-square w-full object-cover rounded-xl mb-3" />
+            {data.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium'>OUT OF STOCK</div>:""}
 
-            <h2 className="text-lg font-semibold text-gray-800 line-clamp-1">
+            <h2 className="text-lg font-semibold text-gray-800 ">
                 {data.name}
             </h2>
             <h3 className="text-blue-600 font-medium mb-2">{data.price} USD</h3>

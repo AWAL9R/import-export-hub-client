@@ -53,6 +53,13 @@ const AddExports = ({ product: product_prop, afterChanges }) => {
             })
     }
 
+    const checkRating=(e)=>{
+        const val=e.target.value;
+        if(!(val>0 && val<=5)&&val){
+           e.target.value="0"
+        }
+    }
+
 
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
@@ -73,7 +80,7 @@ const AddExports = ({ product: product_prop, afterChanges }) => {
                     <SelectCountry className="input select w-full" placeholder="Select a Country" required={true} defaultValue={product?.name || 'BD'} />
 
                     <h2 className='text-secondary'>Rating:</h2>
-                    <input type="number" name='rating' className='input w-full' placeholder='Product rating' required autoComplete='off' defaultValue={product?.rating} />
+                    <input type="number" min="0" max='5' name='rating' className='input w-full' placeholder='Product rating' required autoComplete='off' defaultValue={product?.rating} onChange={checkRating} />
 
                     <h2 className='text-secondary'>Available Quantity:</h2>
                     <input type="number" name='quantity' className='input w-full' placeholder='Available Quantity' required autoComplete='off' defaultValue={product?.quantity} />
