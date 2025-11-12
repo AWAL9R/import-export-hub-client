@@ -8,7 +8,7 @@ const HowItWorks = () => {
                 <div className="relative  aspect-video bg-[url('/register.jpg')] bg-cover flex flex-col justify-center items-center p-3">
                  <div className="absolute inset-0 bg-black/50"></div>
                     <div className="relative text-white">
-                        <h2>Register</h2>
+                        <h2 className='font-semibold'>Register</h2>
                         <p>Create your account.</p>
                     </div>
                 </div>
@@ -16,7 +16,7 @@ const HowItWorks = () => {
                 <div className="relative  aspect-video bg-[url('/export.jpg')] bg-cover flex flex-col justify-center items-center p-3">
                  <div className="absolute inset-0 bg-black/50"></div>
                     <div className="relative text-white">
-                        <h2>Export</h2>
+                        <h2 className='font-semibold'>Export</h2>
                         <p>List your product for export.</p>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ const HowItWorks = () => {
                 <div className="relative  aspect-video bg-[url('/shipping.jpg')] bg-cover flex flex-col justify-center items-center p-3">
                  <div className="absolute inset-0 bg-black/50"></div>
                     <div className="relative text-white">
-                        <h2>Ship</h2>
+                        <h2 className='font-semibold'>Ship</h2>
                         <p>Ship your product after receiving import request</p>
                     </div>
                 </div>

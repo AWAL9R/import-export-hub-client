@@ -20,7 +20,7 @@ const ExportList = ({dataPromise, fkey}) => {
                 </div>
             </div>
 
-            <div className="text-center pb-10">
+            <div className="text-center pb-10 pt-4">
                 {fkey == 'home' ? <Link to="/all" className="btn btn-primary">See All Products</Link>:""}
             </div>
         </div>
