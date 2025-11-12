@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { IoMenu } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
+import { AppNameShort } from '../settings';
 
 const NavBar = () => {
     const [show, setShow] = useState(false);
@@ -17,7 +18,7 @@ const NavBar = () => {
     // console.log(user)
     const userImage = user?.photoURL; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
 
-    const navClasses = 'font-semibold text-primary hover:border-b-2 hover:text-shadow-2xs';
+    const navClasses = 'font-semibold text-accent hover:border-b-2 hover:text-shadow-2xs';
 
     const navLinks = <>
         <NavLink to='/all' className={navClasses}>
@@ -34,7 +35,7 @@ const NavBar = () => {
         </NavLink>
         
 
-        <label className="label font-semibold  text-primary">
+        <label className="label font-semibold  text-accent">
             <input
                 type="checkbox"
                 // defaultChecked={dark}
@@ -53,7 +54,7 @@ const NavBar = () => {
             <div className='container '>
                 <div className='flex justify-between items-center gap-2'>
                     <Link to='/'>
-                        <h1 className='font-bold text-accent '>ImportExport.App</h1>
+                        <h1 className='font-bold text-primary '>{AppNameShort}</h1>
                     </Link>
                     <div className='max-[1200px]:hidden'>
                         <div className='flex flex-wrap justify-center items-center gap-2'>

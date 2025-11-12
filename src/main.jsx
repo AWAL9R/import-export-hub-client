@@ -19,6 +19,7 @@ import HomePage from './pages/HomePage';
 import LoadingError from './components/LoadingError';
 import Loading from './components/Loading';
 import MyImports from './pages/MyImports';
+import AllProductPage from './pages/AllProductPage';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       {
         path:"/all",
         loader: () => fetch(SERVER_URL + `/products?limit=100`),
-        element: <HomePage key='all' fkey="all" />
+        element: <AllProductPage key='all' fkey="all" />
       },
       {
         path: "/login",
