@@ -13,13 +13,14 @@ import PrivateComponent from './components/PrivateComponent';
 import RegisterPage from './pages/RegisterPage';
 import AddExports from './pages/AddExports';
 import ProductPage from './pages/ProductPage';
-import { SERVER_URL } from './settings';
+import { AppName, SERVER_URL } from './settings';
 import MyExports from './pages/MyExports';
 import HomePage from './pages/HomePage';
 import LoadingError from './components/LoadingError';
 import Loading from './components/Loading';
 import MyImports from './pages/MyImports';
 import AllProductPage from './pages/AllProductPage';
+import Title from './components/Title';
 
 const router = createBrowserRouter([
   {
@@ -32,14 +33,12 @@ const router = createBrowserRouter([
         index: true,
         HydrateFallback:Loading,
         errorElement: <LoadingError />,
-        loader: () => fetch(SERVER_URL + `/products?limit=6`),
         element: <HomePage key='home' fkey="home" />
       },
       {
         path:"/all",
         HydrateFallback:Loading,
         errorElement: <LoadingError />,
-        loader: () => fetch(SERVER_URL + `/products?limit=100`),
         element: <AllProductPage key='all' fkey="all" />
       },
       {
@@ -74,11 +73,11 @@ const router = createBrowserRouter([
         HydrateFallback:Loading,
         errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
-        element: <PrivateComponent> <AddExports key="edit" /> </PrivateComponent>
+        element: <PrivateComponent> <Title value={`${AppName} - Edit Product`}></Title> <AddExports key="edit" /> </PrivateComponent>
       },
       {
         path: "*",
-        element: <ErrorPage />
+        element: <div> <Title value={`${AppName} - Application Error`}></Title> <ErrorPage /> </div>
       }
     ]
   },

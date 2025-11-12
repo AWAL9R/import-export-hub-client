@@ -4,12 +4,14 @@ import { useLoaderData } from 'react-router';
 import '@smastrom/react-rating/style.css'
 import { Rating } from '@smastrom/react-rating';
 import Modal from '../components/Modal';
-import { SERVER_URL } from '../settings';
+import { AppName, SERVER_URL } from '../settings';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import Title from '../components/Title';
 
 const ProductPage = () => {
     const loaderData = useLoaderData();
+    // if(loaderData==null)
     // console.log(loaderData)
     const [product, setProduct] = useState(loaderData)
     const [wishedQuantity, setWishedQuantity] = useState(0)
@@ -56,7 +58,7 @@ const ProductPage = () => {
 
     return (
         <div className='my-10'>
-
+            <Title value={`${product.name} - ${AppName}`}></Title>
             <Modal isOpen={showImport} onClose={() => { setShowImport(false); }}>
                 <div className='space-y-2'>
                     <div className='pb-4'>

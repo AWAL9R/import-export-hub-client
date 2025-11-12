@@ -1,12 +1,13 @@
 import React, { Suspense, use, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { SERVER_URL } from '../settings';
+import { AppName, SERVER_URL } from '../settings';
 import Loading from '../components/Loading';
 import ExportView from '../components/ExportView';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import AddExports from './AddExports';
 import Modal from '../components/Modal';
+import Title from '../components/Title';
 
 
 export const MyExportsView = ({ dataPromise }) => {
@@ -15,22 +16,22 @@ export const MyExportsView = ({ dataPromise }) => {
     const { user } = useContext(AuthContext)
     // const navigate = useNavigate()
 
-     const [updateable, setUpdateable] = useState(null);
+    const [updateable, setUpdateable] = useState(null);
 
     const afterDelete = (id) => {
         setProducts([...products.filter(item => item._id != id)])
     }
 
 
-    const afterChanges = (old, newData)=>{
-      const newProducts=products.map(item=>{
-        if(old._id==item._id){
-            return {...item, ...newData}
-        }
-        return item;
-      })
-      setProducts(newProducts)
-      setUpdateable(null)
+    const afterChanges = (old, newData) => {
+        const newProducts = products.map(item => {
+            if (old._id == item._id) {
+                return { ...item, ...newData }
+            }
+            return item;
+        })
+        setProducts(newProducts)
+        setUpdateable(null)
     }
     const onUpdate = (product) => {
         setUpdateable(product)
@@ -72,7 +73,8 @@ export const MyExportsView = ({ dataPromise }) => {
 
     return (
         <>
-            <Modal isOpen={updateable!=null} onClose={() => setUpdateable(null)}>
+            <Title value={`${AppName} - My Exports`}></Title>
+            <Modal isOpen={updateable != null} onClose={() => setUpdateable(null)}>
                 <AddExports product={updateable} afterChanges={afterChanges} />
             </Modal>
 

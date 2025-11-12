@@ -6,14 +6,16 @@ import { auth } from '../firebase/firebase';
 import toast from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
 import CheckPassword from '../components/CheckPassword';
+import { AppName } from '../settings';
+import Title from '../components/Title';
 
 
 const RegisterPage = () => {
-    const {setUser, signUpWithPassword, googleSignin } = useContext(AuthContext);
+    const { setUser, signUpWithPassword, googleSignin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
     const [password, setPassword] = useState('');
     const [isPasswordOkay, set_isPasswordOkay] = useState(false);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
@@ -22,7 +24,7 @@ const RegisterPage = () => {
 
     const googleLogin = () => {
         googleSignin()
-            .then(() => { 
+            .then(() => {
                 navigate(next)
             })
             .catch((err) => {
@@ -30,23 +32,23 @@ const RegisterPage = () => {
             })
     }
 
-    const handlePasswordChange=(e)=>{
-        const p=e.target.value
-        const isOk=CheckPassword({password:p})==null;
-       setPassword(p)
-       set_isPasswordOkay(isOk)
+    const handlePasswordChange = (e) => {
+        const p = e.target.value
+        const isOk = CheckPassword({ password: p }) == null;
+        setPassword(p)
+        set_isPasswordOkay(isOk)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const name=e.target.name.value;
-        const email=e.target.email.value;
-        const photo=e.target.photo.value;
-        const password=e.target.password.value;
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const photo = e.target.photo.value;
+        const password = e.target.password.value;
         // console.log(name, email, photo, password)
         signUpWithPassword(email, password)
-        .then(()=>{
-            updateProfile(auth.currentUser, {
+            .then(() => {
+                updateProfile(auth.currentUser, {
                     displayName: name,
                     photoURL: photo
                 })
@@ -59,15 +61,16 @@ const RegisterPage = () => {
                         toast(err.message)
                         navigate(next)
                     });
-        })
-        .catch(err=>{
-            toast("Error: "+err.message);
-        })
+            })
+            .catch(err => {
+                toast("Error: " + err.message);
+            })
     }
 
 
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
+            <Title value={`${AppName} - Register`}></Title>
             <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10  bg-base-100 shadow-2xl rounded-md p-4 flex flex-col items-center justify-center">
                 <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3'>
                     <h1 className='font-bold mb-5 text-center text-primary'>REGISTER</h1>
@@ -85,7 +88,7 @@ const RegisterPage = () => {
                         <input type={showPass ? 'text' : 'password'} onChange={handlePasswordChange} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
-                    {password?<CheckPassword password={password}/>:""}
+                    {password ? <CheckPassword password={password} /> : ""}
 
 
                     <input disabled={!isPasswordOkay} type="submit" value="Register" className='btn btn-primary w-full' />

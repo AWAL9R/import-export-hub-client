@@ -9,10 +9,10 @@ const NewsLetter = () => {
     }
     return (
         <div className='container bg-base-100 rounded-md shadow-md flex items-center justify-center p-5'>
-            <div className='flex flex-col justify-center gap-4'>
-                <img src="/mail.jpg" alt="" />
+            <div className='flex flex-col justify-center gap-4 my-2 md:my-4 lg:my-10'>
+                
                 <div className='text-center'>
-                    <h2 className='font-semibold'>SUBSCRIBE</h2>
+                    <h1 className='font-semibold my-2 md:my-4 lg:my-10'>Stay in touch</h1>
                     <p>Subscribe to our newsletter to stay informed about our new services.</p>
                 </div>
                 <form onSubmit={handleSubmit} className='flex gap-3'>

@@ -1,6 +1,6 @@
 import React, { Suspense, use, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { SERVER_URL } from '../settings';
+import { AppName, SERVER_URL } from '../settings';
 import Loading from '../components/Loading';
 import ExportView from '../components/ExportView';
 import { Link } from 'react-router';
@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import AddExports from './AddExports';
 import Modal from '../components/Modal';
 import ImportView from '../components/ImportView';
+import Title from '../components/Title';
 
 
 export const MyImportsView = ({ dataPromise }) => {
@@ -23,7 +24,7 @@ export const MyImportsView = ({ dataPromise }) => {
     }
 
     const onDelete = (ddata) => {
-        const product=ddata.product;
+        const product = ddata.product;
         Swal.fire({
             title: `Are you sure to delete import '${product.name}'?`,
             showCancelButton: true,
@@ -58,6 +59,7 @@ export const MyImportsView = ({ dataPromise }) => {
 
     return (
         <>
+            <Title value={`${AppName} - My imports`}></Title>
             <div className='my-10'>
                 <div className="container">
                     {products.length == 0 ? <h2>You do not have any imported product. <Link to="/all" className='text-primary'>Browse products</Link></h2> : ""}

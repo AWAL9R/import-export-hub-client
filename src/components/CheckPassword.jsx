@@ -3,9 +3,9 @@ import { FaCircleCheck, FaCircleExclamation } from 'react-icons/fa6';
 
 const CheckPassword = ({password}) => { 
     const errors=[
-        ["Password should 6 character long", password.length>=6],
         ["Password must contain 1 uppercase", /[A-Z]/.test(password)],
-        ["Password must contain 1 lowercase", /[a-z]/.test(password)]
+        ["Password must contain 1 lowercase", /[a-z]/.test(password)],
+        ["Password should 6 character long", password.length>=6],
     ]
 
     const error=errors.find(item=>item[1]==false)
