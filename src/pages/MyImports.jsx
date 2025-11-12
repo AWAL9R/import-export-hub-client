@@ -12,6 +12,7 @@ import ImportView from '../components/ImportView';
 
 export const MyImportsView = ({ dataPromise }) => {
     const data = use(dataPromise)
+    // console.log(data)
     const [products, setProducts] = useState(data);
     const { user } = useContext(AuthContext)
     // const navigate = useNavigate()

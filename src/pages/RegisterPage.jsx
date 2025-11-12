@@ -5,11 +5,14 @@ import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { auth } from '../firebase/firebase';
 import toast from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
+import CheckPassword from '../components/CheckPassword';
 
 
 const RegisterPage = () => {
     const {setUser, signUpWithPassword, googleSignin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
+    const [password, setPassword] = useState('');
+    const [isPasswordOkay, set_isPasswordOkay] = useState(false);
     const navigate=useNavigate();
 
     const location = useLocation();
@@ -25,6 +28,13 @@ const RegisterPage = () => {
             .catch((err) => {
                 toast(err.message)
             })
+    }
+
+    const handlePasswordChange=(e)=>{
+        const p=e.target.value
+        const isOk=CheckPassword({password:p})==null;
+       setPassword(p)
+       set_isPasswordOkay(isOk)
     }
 
     const handleSubmit = (e) => {
@@ -72,11 +82,13 @@ const RegisterPage = () => {
 
                     <h2 className='text-secondary'>Password:</h2>
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
+                        <input type={showPass ? 'text' : 'password'} onChange={handlePasswordChange} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
+                    {password?<CheckPassword password={password}/>:""}
 
-                    <input type="submit" value="Login" className='btn btn-primary w-full' />
+
+                    <input disabled={!isPasswordOkay} type="submit" value="Register" className='btn btn-primary w-full' />
 
                     <div> Already have an account? login <Link to={`/login${location.search}`} className='text-primary'>here</Link></div>
 
