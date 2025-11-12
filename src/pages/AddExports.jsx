@@ -77,7 +77,7 @@ const AddExports = ({ product: product_prop, afterChanges }) => {
                     <input type="number" name='price' className='input w-full' placeholder='Enter product price' required autoComplete='off' defaultValue={product?.price} />
 
                     <h2 className='text-secondary'>Origin Country:</h2>
-                    <SelectCountry className="input select w-full" placeholder="Select a Country" required={true} defaultValue={product?.name || 'BD'} />
+                    <SelectCountry className="input select w-full" placeholder="Select a Country" required={true} defaultValue={product?.country || 'BD'} />
 
                     <h2 className='text-secondary'>Rating:</h2>
                     <input type="number" min="0" max='5' name='rating' className='input w-full' placeholder='Product rating' required autoComplete='off' defaultValue={product?.rating} onChange={checkRating} />

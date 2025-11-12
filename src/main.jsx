@@ -30,11 +30,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        HydrateFallback:Loading,
+        errorElement: <LoadingError />,
         loader: () => fetch(SERVER_URL + `/products?limit=6`),
         element: <HomePage key='home' fkey="home" />
       },
       {
         path:"/all",
+        HydrateFallback:Loading,
+        errorElement: <LoadingError />,
         loader: () => fetch(SERVER_URL + `/products?limit=100`),
         element: <AllProductPage key='all' fkey="all" />
       },
@@ -48,6 +52,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
+        HydrateFallback:Loading,
+        errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
         element: <PrivateComponent> <ProductPage /> </PrivateComponent>
       },
@@ -65,6 +71,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/editProduct/:id",
+        HydrateFallback:Loading,
+        errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
         element: <PrivateComponent> <AddExports key="edit" /> </PrivateComponent>
       },

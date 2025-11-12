@@ -20,7 +20,7 @@ const ProductView = ({ data }) => {
     //     </div>
     // );
     return (
-        <div className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform ">
+        <div className="bg-base-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform flex flex-col justify-between">
             <div className='w-full relative '>
                 <img
                 src={data.photo}
