@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router';
 
-const ErrorPage = () => {
+const ErrorPage = ({title, subtitle}) => {
     const navigate = useNavigate()
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center ">
@@ -11,9 +11,9 @@ const ErrorPage = () => {
                     className="max-w-sm w-1/1 rounded-lg"
                 />
                 <div>
-                    <h1 className="font-bold">Page Not Found!</h1>
+                    <h1 className="font-bold">{title || "Page Not Found!"}</h1>
                     <p className="py-6">
-                        The page you are looking for is unavailable at this moment. Try again Later.
+                        {subtitle || "The page you are looking for is unavailable at this moment. Try again Later."}
                     </p>
                     <div className='space-x-3'>
                         <button onClick={() => { navigate(-1) }} className="btn btn-secoundary bg-base-300">Go Back</button>

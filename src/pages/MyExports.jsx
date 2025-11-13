@@ -99,7 +99,12 @@ const MyExports = () => {
             "Authorization": `Bearer ${user?.accessToken}`
         },
         // body: JSON.stringify({ name, photo, price, country, rating, quantity })
-    }).then(res => res.json())
+    }).then(res => {
+        if (res.status >= 400){
+            window.location.reload()
+        }
+        return res.json()
+    })
 
     return (
         <Suspense fallback={<Loading />}>

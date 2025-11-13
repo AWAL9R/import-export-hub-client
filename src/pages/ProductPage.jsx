@@ -13,6 +13,7 @@ import { MdPerson } from 'react-icons/md';
 import { BiSolidDollarCircle } from 'react-icons/bi';
 import { Star } from 'lucide-react';
 import { LiaStarSolid } from 'react-icons/lia';
+import ErrorPage from './ErrorPage';
 
 const ProductPage = () => {
     const loaderData = useLoaderData();
@@ -23,7 +24,7 @@ const ProductPage = () => {
     const [showImport, setShowImport] = useState(false)
     const { user } = useContext(AuthContext)
 
-    const rating = parseInt(product.rating)
+    const rating = parseInt(product?.rating||0)
 
     const checkQuantity = (e) => {
         const val = parseInt(e.target.value);
@@ -58,6 +59,11 @@ const ProductPage = () => {
             .catch(err => {
                 toast(err.message)
             })
+    }
+    // console.log(product)
+
+    if(!product?._id){
+        return <ErrorPage title="Product Not found" />
     }
 
 
