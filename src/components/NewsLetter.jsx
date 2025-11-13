@@ -12,8 +12,8 @@ const NewsLetter = () => {
             <div className='flex flex-col justify-center gap-4 my-2 md:my-4 lg:my-10'>
                 
                 <div className='text-center'>
-                    <h1 className='font-semibold my-2 md:my-4 lg:my-10'>Stay in touch</h1>
-                    <p>Subscribe to our newsletter to stay informed about our new services.</p>
+                    <h1 className='font-semibold mt-1 md:mt-2 lg:mt-5 mb-3 md:mb-6 lg:mb-12'>Stay in touch</h1>
+                    <p className='py-2'>Subscribe to our newsletter to stay informed about our new services.</p>
                 </div>
                 <form onSubmit={handleSubmit} className='flex gap-3'>
                     <input type="email" className="input text-primary" placeholder='Your Email address' required />

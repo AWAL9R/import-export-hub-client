@@ -26,7 +26,7 @@ const ProductView = ({ data }) => {
                 <img
                     src={data.photo}
                     alt={data.name}
-                    className="aspect-square w-full object-cover rounded-t-xl mb-3" />
+                    className="aspect-square w-full object-contain rounded-t-xl mb-3" />
                 {data.quantity == 0 ? <div className='text-white bg-red-600 w-full p-3 font-medium absolute top-0 opacity-60 rounded-t-xl'>OUT OF CAPACITY</div> : ""}
             </div>
 
