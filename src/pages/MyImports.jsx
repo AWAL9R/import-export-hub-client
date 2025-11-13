@@ -13,6 +13,7 @@ import Title from '../components/Title';
 
 export const MyImportsView = ({ dataPromise }) => {
     const data = use(dataPromise)
+    // data.reverse(); // server will send ascending, so reverse it so that client sees latest data first
     // console.log(data)
     const [products, setProducts] = useState(data);
     const { user } = useContext(AuthContext)

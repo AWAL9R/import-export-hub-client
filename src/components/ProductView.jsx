@@ -35,7 +35,7 @@ const ProductView = ({ data }) => {
             <h2 className=" p-4 text-lg font-semibold text-accent ">{data.name}</h2>
 
             <div className="p-4 flex flex-col gap-4">
-                <h3 className=" text-blue-600 font-medium mb-2 text-center">{data.price} USD</h3>
+                <h3 className=" text-green-600 font-medium mb-2 text-center">{data.price} USD</h3>
 
                 <div className="">
                     <Link

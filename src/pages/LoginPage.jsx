@@ -5,6 +5,7 @@ import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import toast from 'react-hot-toast';
 import { AppName } from '../settings';
 import Title from '../components/Title';
+import { getFirebaseErrorMessage } from '../firebase/firebaseErrorMessages';
 
 const LoginPage = () => {
     const { signInWithPassword, googleSignin } = useContext(AuthContext);
@@ -16,30 +17,37 @@ const LoginPage = () => {
     // console.log(params.get("next"))
     const next = decodeURIComponent(params.get("next") || '') || "/";
 
+    const [isSubmitting, setSubmitting] = useState(false);
+
 
     const googleLogin = () => {
         googleSignin()
             .then(() => {
+                setSubmitting(false)
                 toast("Logged In using Google...")
                 navigate(next)
             })
             .catch((err) => {
-                toast(err.message)
+                setSubmitting(false)
+                toast(getFirebaseErrorMessage(err));
             })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitting(true)
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password)
+        // console.log(email, password)
         signInWithPassword(email, password)
             .then(() => {
+                setSubmitting(false)
                 toast("Logged In...")
                 navigate(next)
             })
             .catch(err => {
-                toast("Error: " + err.message);
+                setSubmitting(false)
+                toast(getFirebaseErrorMessage(err));
             })
     }
 
@@ -59,7 +67,7 @@ const LoginPage = () => {
 
                     <div className='hidden'> Forget password? recover <Link to={`/recover${location.search}`} className='text-primary hover:underline'>here</Link> </div>
 
-                    <button className='btn btn-primary w-full'>Login</button>
+                    <button disabled={isSubmitting} className='btn btn-primary w-full'>Login</button>
 
                     <div> New to our site? register <Link to={`/register${location.search}`} className='text-primary'>here</Link></div>
 

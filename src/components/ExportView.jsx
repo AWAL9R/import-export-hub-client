@@ -24,7 +24,7 @@ const ExportView = ({ data: product, onUpdate, onDelete }) => {
             <img src={product.photo} alt={product.name} className="w-30 aspect-square rounded object-contain " />
             <div className="flex-1">
                 <Link className=' font-medium text-xl sm:whitespace-normal' to={'/products/' + product._id}><h2>{product.name}</h2></Link>
-                <h3 className=" text-blue-600 font-medium mb-2 text-center">{product.price} USD</h3>
+                <h3 className=" text-green-600 font-medium mb-2 text-center">{product.price} USD</h3>
                 <div className='flex flex-wrap gap-3 font-medium'>
                     <div className='text-lg text-green-500 flex items-center gap-1'><FaGlobe /> {countries[product.country]}</div>
                     <div className="text-lg text-yellow-500 flex items-center gap-1"><FaStar/> {product.rating}</div>

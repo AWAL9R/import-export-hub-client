@@ -8,6 +8,7 @@ import { updateProfile } from 'firebase/auth';
 import CheckPassword from '../components/CheckPassword';
 import { AppName } from '../settings';
 import Title from '../components/Title';
+import { getFirebaseErrorMessage } from '../firebase/firebaseErrorMessages';
 
 
 const RegisterPage = () => {
@@ -22,13 +23,18 @@ const RegisterPage = () => {
     // console.log(params.get("next"))
     const next = decodeURIComponent(params.get("next") || '') || "/";
 
+    const [isSubmitting, setSubmitting] = useState(false);
+
     const googleLogin = () => {
         googleSignin()
             .then(() => {
+                setSubmitting(false)
+                toast("Logged In using Google...")
                 navigate(next)
             })
             .catch((err) => {
-                toast(err.message)
+                setSubmitting(false)
+                toast(getFirebaseErrorMessage(err));
             })
     }
 
@@ -41,6 +47,7 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitting(true)
         const name = e.target.name.value;
         const email = e.target.email.value;
         const photo = e.target.photo.value;
@@ -53,17 +60,20 @@ const RegisterPage = () => {
                     photoURL: photo
                 })
                     .then(() => {
+                        setSubmitting(false)
                         toast("Profile updated")
                         setUser({ ...auth.currentUser })
                         navigate(next)
                     })
                     .catch(err => {
-                        toast(err.message)
+                        setSubmitting(false)
+                        toast(getFirebaseErrorMessage(err));
                         navigate(next)
                     });
             })
             .catch(err => {
-                toast("Error: " + err.message);
+                setSubmitting(false)
+                toast(getFirebaseErrorMessage(err));
             })
     }
 
@@ -92,7 +102,7 @@ const RegisterPage = () => {
 
 
                     {/* <input  type="submit" value="Register" className='btn btn-primary w-full' /> */}
-                    <button disabled={!isPasswordOkay} className='btn btn-primary w-full'>Register</button>
+                    <button disabled={!isPasswordOkay||isSubmitting} className='btn btn-primary w-full'>Register</button>
 
                     <div> Already have an account? login <Link to={`/login${location.search}`} className='text-primary'>here</Link></div>
 
