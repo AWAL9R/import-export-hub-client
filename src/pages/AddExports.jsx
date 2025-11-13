@@ -65,30 +65,32 @@ const AddExports = ({ product: product_prop, afterChanges }) => {
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
             <Title value={`${AppName} - Add Export`}></Title>
-            <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10  bg-base-100 shadow-2xl rounded-md p-4 flex flex-col items-center justify-center">
-                <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3'>
+            <div className="container max-w-180! py-5 bg-base-100 shadow-2xl rounded-xl flex flex-col items-center justify-center">
+                 {/* w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10 */}
+                <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-9/10 sm:w-8/10 md:w-7/10'>
+                    {/* w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 */}
                     <h1 className='font-bold mb-5 text-center text-primary'>{product ? "Edit Product" : "ADD Export"}</h1>
 
-                    <h2 className='text-secondary'>Product Name:</h2>
-                    <input type="text" name='name' className='input w-full' placeholder='Enter product name' required autoComplete='off' defaultValue={product?.name} />
+                    <h2 className='text-accent'>Product Name:</h2>
+                    <input type="text" name='name' className='input input-primary w-full' placeholder='Enter product name' required autoComplete='off' defaultValue={product?.name} />
 
-                    <h2 className='text-secondary'>Product Image:</h2>
-                    <input type="url" name='photo' className='input w-full' placeholder='Enter product image url' required autoComplete='off' defaultValue={product?.photo} />
+                    <h2 className='text-accent'>Product Image:</h2>
+                    <input type="url" name='photo' className='input input-primary w-full' placeholder='Enter product image url' required autoComplete='off' defaultValue={product?.photo} />
 
-                    <h2 className='text-secondary'>Price:</h2>
-                    <input type="number" name='price' className='input w-full' placeholder='Enter product price' required autoComplete='off' defaultValue={product?.price} />
+                    <h2 className='text-accent'>Price:</h2>
+                    <input type="number" name='price' className='input input-primary w-full' placeholder='Enter product price' required autoComplete='off' defaultValue={product?.price} />
 
-                    <h2 className='text-secondary'>Origin Country:</h2>
-                    <SelectCountry className="input select w-full" placeholder="Select a Country" required={true} defaultValue={product?.country || 'BD'} />
+                    <h2 className='text-accent'>Origin Country:</h2>
+                    <SelectCountry className="input select-primary select w-full" placeholder="Select a Country" required={true} defaultValue={product?.country || 'BD'} />
 
-                    <h2 className='text-secondary'>Rating:</h2>
-                    <input type="number" min="0" max='5' name='rating' className='input w-full' placeholder='Product rating' required autoComplete='off' defaultValue={product?.rating} onChange={checkRating} />
+                    <h2 className='text-accent'>Rating:</h2>
+                    <input type="number" min="0" max='5' name='rating' className='input input-primary w-full' placeholder='Product rating' required autoComplete='off' defaultValue={product?.rating} onChange={checkRating} />
 
-                    <h2 className='text-secondary'>Available Quantity:</h2>
-                    <input type="number" name='quantity' className='input w-full' placeholder='Available Quantity' required autoComplete='off' defaultValue={product?.quantity} />
+                    <h2 className='text-accent'>Available Quantity:</h2>
+                    <input type="number" name='quantity' className='input input-primary w-full' placeholder='Available Quantity' required autoComplete='off' defaultValue={product?.quantity} />
 
 
-                    <input type="submit" value={product ? "Edit Product" : "Add Product for Export"} className='btn btn-primary w-full' />
+                    <button className='btn btn-primary w-full'>{product ? "Edit Product" : "Add Product for Export"}</button>
 
 
                 </form>

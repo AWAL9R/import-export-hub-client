@@ -8,6 +8,11 @@ import { AppName, SERVER_URL } from '../settings';
 import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import Title from '../components/Title';
+import { FaCartShopping, FaPerson } from 'react-icons/fa6';
+import { MdPerson } from 'react-icons/md';
+import { BiSolidDollarCircle } from 'react-icons/bi';
+import { Star } from 'lucide-react';
+import { LiaStarSolid } from 'react-icons/lia';
 
 const ProductPage = () => {
     const loaderData = useLoaderData();
@@ -40,13 +45,13 @@ const ProductPage = () => {
             body: JSON.stringify({ product_id: product._id, quantity: e.target.quantity.value })
         }).then(res => res.json())
             .then(res => {
-                if (res.product) { 
-                    setProduct({...product, ...res.product})
+                if (res.product) {
+                    setProduct({ ...product, ...res.product })
                 }
-                if(res.message){
+                if (res.message) {
                     toast(res.message)
                 }
-                if(res.success){
+                if (res.success) {
                     setShowImport(false)
                 }
             })
@@ -72,22 +77,37 @@ const ProductPage = () => {
                 </div>
             </Modal>
 
-            <div className="container bg-base-100 rounded-md shadow-md overflow-hidden ">
-                <div className='flex flex-wrap gap-3'>
-                    <img src={product.photo} alt="" className='aspect-aquare w-1/3 max-lg:w-1/2 max-md:w-full object-cover  mb-3' />
-                    <div className='py-5 space-y-4 px-3'>
-                        <h2 className='font-semibold'>
+            <div className="container bg-base-100 rounded-xl shadow-xl overflow-hidden ">
+                <div className='grid grid-cols-1 lg:grid-cols-3'>
+                    <img src={product.photo} alt="" className='aspect-square w-full object-contain' />
+                    <div className='col-span-2 py-5 space-y-4 px-5 flex flex-col justify-between'>
+                        <h1 className='font-semibold text-5xl! max-[600px]:text-3xl!'>
                             {product.name}
-                        </h2>
-                        <div className='flex h2 gap-2'>
-                            <Rating style={{ maxWidth: 200 }} value={rating} readOnly />
+                        </h1>
+
+
+                        <div>
+                            <div className='text-lg text-gray-400 flex gap-1 items-center'><MdPerson /> Exporter</div>
+                            <span className='pl-5 text-xl break-all whitespace-normal'>{product.user.email}</span>
                         </div>
-                        <div className="py-10 h2 font-semibold flex flex-wrap gap-5">
-                            <div className='text-green-600'>${product.price} </div>
-                            <div>Available: {product.quantity}</div>
+
+                        <div>
+                            <div className='text-lg text-gray-400 flex gap-1 items-center'><BiSolidDollarCircle /> Price</div>
+                            <span className='pl-5 text-xl break-all whitespace-normal text-green-600'>{product.price}$</span>
                         </div>
-                        <div>Exporter: <b>{product.user.name}</b></div>
-                        {product.quantity==0?<div className='text-white bg-red-600 w-full p-3 font-medium opacity-60'>OUT OF CAPACITY</div>:<button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button>}
+
+                        <div>
+                            <div className='text-lg text-gray-400 flex gap-1 items-center'><LiaStarSolid /> Rating: {product.rating}</div>
+                            <div className='pl-5 text-xl  text-green-600'><Rating style={{ maxWidth: 200 }} value={rating} readOnly /></div>
+                        </div>
+
+                        <div>
+                            <div className='text-lg text-gray-400 flex gap-1 items-center'><FaCartShopping /> Quantity </div>
+                            <div className='pl-5 text-xl  text-green-600'>{product.quantity}</div>
+                        </div>
+
+
+                        {product.quantity == 0 ? <div className='text-white bg-red-600 w-full p-3 font-medium opacity-60'>OUT OF CAPACITY</div> : <div><button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button></div>}
                     </div>
                 </div>
             </div>

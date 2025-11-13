@@ -71,27 +71,28 @@ const RegisterPage = () => {
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
             <Title value={`${AppName} - Register`}></Title>
-            <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10  bg-base-100 shadow-2xl rounded-md p-4 flex flex-col items-center justify-center">
-                <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3'>
+            <div className="container max-w-180!  bg-base-100 shadow-2xl rounded-xl p-4 flex flex-col items-center justify-center">
+                <form onSubmit={handleSubmit} className='flex flex-col gap-5  w-9/10 sm:w-8/10 md:w-7/10'>
                     <h1 className='font-bold mb-5 text-center text-primary'>REGISTER</h1>
-                    <h2 className='text-secondary'>Name:</h2>
-                    <input type="text" name='name' className='input w-full' placeholder='Enter your full name' required />
+                    <h2 className='text-accent'>Name:</h2>
+                    <input type="text" name='name' className='input input-primary w-full' placeholder='Enter your full name' required />
 
-                    <h2 className='text-secondary'>Email:</h2>
-                    <input type="email" name='email' className='input w-full' placeholder='Enter your email address' required />
+                    <h2 className='text-accent'>Email:</h2>
+                    <input type="email" name='email' className='input input-primary w-full' placeholder='Enter your email address' required />
 
-                    <h2 className='text-secondary'>PhotoURL:</h2>
-                    <input type="url" name='photo' className='input w-full' placeholder='Enter profile picture url' required />
+                    <h2 className='text-accent'>PhotoURL:</h2>
+                    <input type="url" name='photo' className='input input-primary w-full' placeholder='Enter profile picture url' required />
 
-                    <h2 className='text-secondary'>Password:</h2>
+                    <h2 className='text-accent'>Password:</h2>
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} onChange={handlePasswordChange} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
+                        <input type={showPass ? 'text' : 'password'} onChange={handlePasswordChange} name='password' className='input input-primary w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-1/2 -translate-y-1/2 right-4 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
                     {password ? <CheckPassword password={password} /> : ""}
 
 
-                    <input disabled={!isPasswordOkay} type="submit" value="Register" className='btn btn-primary w-full' />
+                    {/* <input  type="submit" value="Register" className='btn btn-primary w-full' /> */}
+                    <button disabled={!isPasswordOkay} className='btn btn-primary w-full'>Register</button>
 
                     <div> Already have an account? login <Link to={`/login${location.search}`} className='text-primary'>here</Link></div>
 

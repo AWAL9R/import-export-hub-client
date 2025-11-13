@@ -9,7 +9,7 @@ import Title from '../components/Title';
 const LoginPage = () => {
     const { signInWithPassword, googleSignin } = useContext(AuthContext);
     const [showPass, setShowPass] = useState(false);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
@@ -19,7 +19,8 @@ const LoginPage = () => {
 
     const googleLogin = () => {
         googleSignin()
-            .then(() => { 
+            .then(() => {
+                toast("Logged In using Google...")
                 navigate(next)
             })
             .catch((err) => {
@@ -29,38 +30,38 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const email=e.target.email.value;
-        const password=e.target.password.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
         console.log(email, password)
         signInWithPassword(email, password)
-        .then(()=>{
-            toast("Logged In...")
-            navigate(next)
-        })
-        .catch(err=>{
-            toast("Error: "+err.message);
-        })
+            .then(() => {
+                toast("Logged In...")
+                navigate(next)
+            })
+            .catch(err => {
+                toast("Error: " + err.message);
+            })
     }
 
 
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
             <Title value={`${AppName} - Login`}></Title>
-            <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[40vw] max-w-9/10  bg-base-100 shadow-2xl rounded-md p-4 flex flex-col items-center justify-center">
-                <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3'>
+            <div className="container max-w-180! py-5  bg-base-100 shadow-2xl rounded-xl p-4 flex flex-col items-center justify-center">
+                <form onSubmit={handleSubmit} className='flex flex-col gap-5  w-9/10 sm:w-8/10 md:w-7/10'>
                     <h1 className='font-bold mb-5 text-center text-primary'>LOGIN</h1>
-                    <h2 className='text-secondary'>Email:</h2>
-                    <input type="email" name='email' className='input w-full' placeholder='Enter your email address' required />
-                    <h2 className='text-secondary'>Password:</h2>
+                    <h2 className='text-accent'>Email:</h2>
+                    <input type="email" name='email' className='input input-primary w-full' placeholder='Enter your email address' required />
+                    <h2 className='text-accent'>Password:</h2>
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} name='password' className='input w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-3 right-2 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
+                        <input type={showPass ? 'text' : 'password'} name='password' className='input input-primary w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-1/2 -translate-y-1/2 right-4 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
                     <div className='hidden'> Forget password? recover <Link to={`/recover${location.search}`} className='text-primary hover:underline'>here</Link> </div>
 
-                    <input type="submit" value="Login" className='btn btn-primary w-full' />
+                    <button className='btn btn-primary w-full'>Login</button>
 
-                     <div> New to our site? register <Link to={`/register${location.search}`} className='text-primary'>here</Link></div>
+                    <div> New to our site? register <Link to={`/register${location.search}`} className='text-primary'>here</Link></div>
 
                     <div className='divider'>Social login</div>
 
@@ -69,7 +70,7 @@ const LoginPage = () => {
                         Login with Google
                     </button>
 
-                   
+
                 </form>
             </div>
         </div>

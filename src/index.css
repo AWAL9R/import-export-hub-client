@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 @plugin "daisyui" {
@@ -47,4 +48,18 @@ h3, .h3{
 
 .container {
   @apply w-9/10 mx-auto max-w-[1440px]
+}
+
+
+
+.btn, .input {
+  @apply h-auto min-h-0 rounded-xl px-7 py-3;
+}
+
+
+
+
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
 }
