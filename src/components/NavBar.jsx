@@ -5,39 +5,38 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { AppNameShort } from '../settings';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import DarkMode from './DarkMode';
 
 const NavBar = () => {
     const [show, setShow] = useState(false);
     const { user, logOut } = useContext(AuthContext)
-    const [dark, setDark] = useState(false)
+    
 
-
-    const html = document.documentElement;
-    html.dataset.theme = dark ? "dark" : "light";
 
 
     // console.log(user)
     const userImage = user?.photoURL; //"https://t2informatik.de/en/wp-content/uploads/sites/2/2022/01/user-smartpedia-t2informatik.png";
+    const userUid = user?.uid;
 
     const navClasses = 'font-semibold text-accent hover:text-primary hover:text-shadow-2xs';
 
-    const toggleDark=()=>{
-        setDark(!dark)
-    }
-
+    
     const navLinks = <>
         <NavLink to='/all' className={navClasses}>
             All Products
         </NavLink>
-        {userImage ? <NavLink to='/me/exports' className={navClasses}>
+        {userUid ? <NavLink to='/me/exports' className={navClasses}>
             My Exports
         </NavLink> : ""}
-        {userImage ? <NavLink to='/me/imports' className={navClasses}>
+        {userUid ? <NavLink to='/me/imports' className={navClasses}>
             My Imports
         </NavLink> : ""}
         <NavLink to='/add/exports' className={navClasses}>
             Add Export
         </NavLink>
+        {userUid ?  "" : <NavLink to='/register' className={navClasses}>
+            Register
+        </NavLink> }
 
 
         {/* <label className="label font-semibold  text-accent">
@@ -51,7 +50,7 @@ const NavBar = () => {
             Dark
         </label> */}
 
-        <div className="border border-base-300 p-2 select-none rounded-xl" onClick={toggleDark}>{dark?<FaSun className='text-3xl'/> : <FaMoon className='text-3xl'/>}</div>
+
 
         {userImage ? <button className='btn btn-soft' onClick={logOut}>Logout</button> : ""}
     </>
@@ -61,9 +60,12 @@ const NavBar = () => {
             <div className="bg-base-100 py-3 navbar max-[600px]:fixed top-0 z-999">
                 <div className='container '>
                     <div className='flex justify-between items-center gap-2'>
-                        <Link to='/'>
-                            <h1 className='font-bold text-primary '>Export<span className="text-yellow-500">Mania</span></h1>
-                        </Link>
+                        <div className='flex gap-2'>
+                            <Link to='/'>
+                                <h1 className='font-bold text-primary '>Export<span className="text-yellow-500">Mania</span></h1>
+                            </Link>
+                            <DarkMode/>
+                        </div>
                         <div className='max-[1200px]:hidden'>
                             <div className='flex flex-wrap justify-center items-center gap-2'>
                                 {navLinks}

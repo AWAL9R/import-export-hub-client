@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
 import '@smastrom/react-rating/style.css'
 import { Rating } from '@smastrom/react-rating';
@@ -113,7 +113,7 @@ const ProductPage = () => {
                         </div>
 
 
-                        {product.quantity == 0 ? <div className='text-white bg-red-600 w-full p-3 font-medium opacity-60'>OUT OF CAPACITY</div> : <div><button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button></div>}
+                        {product.quantity == 0 ? <div className='text-white bg-red-600 w-full p-3 font-medium opacity-60'>OUT OF CAPACITY</div> : user?.uid ? <div><button className="btn btn-primary" onClick={() => { setShowImport(true); }}>Import this product</button></div>:<Link to='/login' className='underline text-primary'>Login to import this product</Link>}
                     </div>
                 </div>
             </div>

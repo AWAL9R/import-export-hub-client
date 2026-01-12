@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
@@ -51,6 +51,19 @@ const LoginPage = () => {
             })
     }
 
+    // Demo USer
+    // demo@demo.com
+    // DemoDemo
+
+    const emailRef=useRef()
+    const passwordRef=useRef()
+
+    const fillDemoUserInfo = (e) => {
+        e.preventDefault()
+        emailRef.current.value='demo@demo.com'
+        passwordRef.current.value='DemoDemo'
+        //handleSubmit(e)
+    }
 
     return (
         <div className="min-h-[80vh] max-[800px]:min-h-[100vw] my-10 flex items-center justify-center ">
@@ -59,13 +72,15 @@ const LoginPage = () => {
                 <form onSubmit={handleSubmit} className='flex flex-col gap-5  w-9/10 sm:w-8/10 md:w-7/10'>
                     <h1 className='font-bold mb-5 text-center text-primary'>LOGIN</h1>
                     <h2 className='text-accent'>Email:</h2>
-                    <input type="email" name='email' className='input input-primary w-full' placeholder='Enter your email address' required />
+                    <input ref={emailRef} type="email" name='email' className='input input-primary w-full' placeholder='Enter your email address' required />
                     <h2 className='text-accent'>Password:</h2>
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} name='password' className='input input-primary w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-1/2 -translate-y-1/2 right-4 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
+                        <input ref={passwordRef} type={showPass ? 'text' : 'password'} name='password' className='input input-primary w-full' placeholder='Enter Your password' required /> <button type='button' onClick={() => setShowPass(!showPass)} className='z-99 absolute top-1/2 -translate-y-1/2 right-4 select-none'> {showPass ? <BsEyeSlashFill /> : <BsEyeFill />}</button>
                     </div>
 
                     <div className='hidden'> Forget password? recover <Link to={`/recover${location.search}`} className='text-primary hover:underline'>here</Link> </div>
+
+                    <Link className='underline text-primary' onClick={fillDemoUserInfo}>Fill demo user credentials</Link>
 
                     <button disabled={isSubmitting} className='btn btn-primary w-full'>Login</button>
 

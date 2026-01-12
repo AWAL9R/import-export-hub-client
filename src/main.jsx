@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         HydrateFallback:Loading,
         errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
-        element: <PrivateComponent> <ProductPage /> </PrivateComponent>
+        element:  <ProductPage />
       },
       {
         path: "/me/exports",
