@@ -11,7 +11,7 @@ const Footer = () => {
                     <div className='max-w-150 space-y-3'>
                         <h2 className='font-semibold'>{AppName}</h2>
                         <p className='text-gray-200 text-justify'>
-                            {AppName} is a modern platform designed to simplify global trade management. It helps businesses efficiently manage exports, track products, and connect with buyers worldwide. With user-friendly tools for inventory, pricing, and documentation, ExportMania empowers exporters to grow faster and operate smarter in today’s competitive international market.
+                            {AppName} is a modern platform designed to simplify global trade management. It helps businesses efficiently manage exports, track products, and connect with buyers worldwide. With user-friendly tools for inventory, pricing, and documentation, ExportLab empowers exporters to grow faster and operate smarter in today’s competitive international market.
                         </p>
                         <div className="flex gap-1 text-3xl *:border-gray-200 *:border *:p-2">
                             <a href={`https://twitter.com/@${AppName}`}><FaX /></a>

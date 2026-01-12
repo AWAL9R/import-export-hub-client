@@ -60,9 +60,9 @@ const NavBar = () => {
             <div className="bg-base-100 py-3 navbar max-[600px]:fixed top-0 z-999">
                 <div className='container '>
                     <div className='flex justify-between items-center gap-2'>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 items-center'>
                             <Link to='/'>
-                                <h1 className='font-bold text-primary '>Export<span className="text-yellow-500">Mania</span></h1>
+                                <h1 className='font-bold text-primary '>Export<span className="text-yellow-500">Lab</span></h1>
                             </Link>
                             <DarkMode/>
                         </div>

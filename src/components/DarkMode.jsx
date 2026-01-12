@@ -24,12 +24,16 @@ const DarkMode = () => {
     transition-all duration-200
     active:scale-95
     flex justify-center items-center
+    text-2xl
+    max-[600px]:text-lg
+    max-[600px]:py-1.5
+    max-[600px]:px-2
   "
         >
             {dark ? (
-                <HiOutlineSun className="text-2xl text-base-content/70 group-hover:text-base-content transition" />
+                <HiOutlineSun className=" ext-base-content/70 group-hover:text-base-content transition" />
             ) : (
-                <HiOutlineMoon className="text-2xl text-base-content/70 group-hover:text-base-content transition" />
+                <HiOutlineMoon className="text-base-content/70 group-hover:text-base-content transition" />
             )}
         </div>
     );
