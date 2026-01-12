@@ -11,7 +11,7 @@ const ExportList = ({dataPromise, fkey}) => {
     }
     return (
         <div>
-            <div className='my-2 md:my-4 lg:my-10'>
+            <div className='mspace-both'>
                 <h1 className='text-center font-semibold py-2 mb-2 lg:py-4 lg:mb-4'>{fkey == 'home' ? "Most Recent Products" : "All products"}</h1>
                 {fkey !== 'home' ?<div className='container text-right h3 py-2 flex justify-end items-center gap-2'>Search by Name: <input type="text" onChange={(e)=>onSearch(e.target.value)} className="input input-primary flex-1 max-w-80" placeholder='Search query'  /></div> : ""}
                 {products.length == 0 ? <h2 className="container">There is no product. <Link to="/add/exports" className='text-primary'>Add one</Link></h2> : ""}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const HowItWorks = () => {
     return (
-        <div className="container">
+        <div className="container mspace-bottom">
             <h1 className='text-center font-semibold py-2 md:py-4 lg:py-5 mb-5'>How it Works</h1>
             <div className=' grid grid-cols-1 lg:grid-cols-3 gap-4 *:bg-base-100 *:shadow-xl *:rounded-xl *:overflow-hidden'>
                 <div className="relative  aspect-video bg-[url('/register.jpg')] bg-cover flex flex-col justify-center items-center p-3">

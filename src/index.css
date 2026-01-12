@@ -53,7 +53,17 @@ h3, .h3{
 
 
 .btn, .input {
-  @apply h-auto min-h-0 rounded-xl px-7 py-3;
+  @apply h-auto min-h-0 rounded-xl px-5 py-3;
+}
+
+.mspace-both{
+  @apply my-2 md:my-4 lg:my-10
+}
+.mspace-top{
+  @apply mt-2 md:mt-4 lg:mt-10
+}
+.mspace-bottom{
+  @apply mb-2 md:mb-4 lg:mb-10
 }
 
 

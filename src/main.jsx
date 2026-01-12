@@ -21,6 +21,9 @@ import Loading from './components/Loading';
 import MyImports from './pages/MyImports';
 import AllProductPage from './pages/AllProductPage';
 import Title from './components/Title';
+// import PrivacyPolicyPage from './pages/PrivacyPolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 const router = createBrowserRouter([
   {
@@ -74,6 +77,15 @@ const router = createBrowserRouter([
         errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
         element: <PrivateComponent> <Title value={`${AppName} - Edit Product`}></Title> <AddExports key="edit" /> </PrivateComponent>
+      },
+
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />
+      },
+      {
+        path: "/tos",
+        element: <TermsOfService />
       },
       {
         path: "*",

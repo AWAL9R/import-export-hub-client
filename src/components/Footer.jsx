@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebook, FaGithub, FaLinkedin, FaX } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
 import { AppName } from '../settings';
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
@@ -13,25 +14,25 @@ const Footer = () => {
                         <p className='text-gray-200 text-justify'>
                             {AppName} is a modern platform designed to simplify global trade management. It helps businesses efficiently manage exports, track products, and connect with buyers worldwide. With user-friendly tools for inventory, pricing, and documentation, ExportLab empowers exporters to grow faster and operate smarter in today’s competitive international market.
                         </p>
-                        <div className="flex gap-1 text-3xl *:border-gray-200 *:border *:p-2">
-                            <a href={`https://twitter.com/@${AppName}`}><FaX /></a>
-                            <a href={`https://facebook.com/@${AppName}`}><FaFacebook /></a>
-                            <a href={`https://linkedin.com/@${AppName}`}><FaLinkedin /></a>
-                            <a href={`https://github.com/@${AppName}`}><FaGithub/> </a>
-                        </div>
-                    </div>
-                    <div className='flex flex-col space-y-3'>
-                        <h2 className='font-semibold'>Services</h2>
-                        <a href="">Products & Services</a>
-                        <a href="">Customer Stories</a>
-                        <a href="">Download Apps</a>
                     </div>
 
                     <div className='flex flex-col space-y-3'>
                         <h2 className='font-semibold'>Information</h2>
-                        <a href="">Privacy Policy</a>
-                        <a href="">Terms & Conditions</a>
-                        <a href="">Join Us</a>
+                        <Link to="/privacy-policy">Privacy Policy</Link>
+                        <Link to="/tos">Terms & Conditions</Link>
+                        <Link to="/register">Join Us</Link>
+                    </div>
+
+                    <div className='flex flex-col space-y-3'>
+                        <h2 className='font-semibold'>Contact Us</h2>
+                        <div>
+                            <p>awal9r@gmail.com</p>
+                            <p>+880 1842-630991</p>
+                        </div>
+                        <div className="flex gap-1 text-3xl *:border-gray-200 *:border *:p-2 *:rounded-full *:hover:bg-gray-400">
+                            <a href={`https://linkedin.com/in/abdul-awal-opu`}><FaLinkedin /></a>
+                            <a href={`https://github.com/AWAL9R`}><FaGithub /> </a>
+                        </div>
                     </div>
 
                     {/* <div className='flex flex-col space-y-3 *:flex *:gap-2 *:items-center   '>
