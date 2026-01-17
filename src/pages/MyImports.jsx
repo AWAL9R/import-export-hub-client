@@ -9,6 +9,7 @@ import AddExports from './AddExports';
 import Modal from '../components/Modal';
 import ImportView from '../components/ImportView';
 import Title from '../components/Title';
+import { FaBoxOpen } from 'react-icons/fa6';
 
 
 export const MyImportsView = ({ dataPromise }) => {
@@ -58,12 +59,28 @@ export const MyImportsView = ({ dataPromise }) => {
         });
     }
 
+    const noImports = <>
+        <div className="flex justify-center">
+            <div className="bg-white border border-base-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center shadow-md max-w-200">
+                <FaBoxOpen className="text-6xl text-primary mb-4" />
+                <h3 className="text-xl font-semibold mb-2">You do not have any imported product</h3>
+                <p className="text-sm opacity-70 mb-4">Start by adding your first product to get started.</p>
+                <Link
+                    to={'/all'}
+                    className="bg-primary text-white px-6 py-2 rounded-xl hover:bg-primary/90 transition"
+                >
+                    Browse Products
+                </Link>
+            </div>
+        </div>
+    </>
+
     return (
         <>
             <Title value={`${AppName} - My imports`}></Title>
             <div className='my-10'>
                 <div className="container">
-                    {products.length == 0 ? <h2>You do not have any imported product. <Link to="/all" className='text-primary'>Browse products</Link></h2> : ""}
+                    {products.length == 0 ? noImports : ""}
                     {products.map(item => <ImportView key={item._id} afterDelete={afterDelete} data={item} onDelete={onDelete} />)}
                 </div>
             </div>
