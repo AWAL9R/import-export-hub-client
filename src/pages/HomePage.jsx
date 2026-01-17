@@ -20,7 +20,7 @@ import TrustedBy from '../components/TrustedBy';
 
 const HomePage = ({ fkey }) => {
     // const data = useLoaderData()
-    const dataPromise = fetch(SERVER_URL + `/products?limit=6`).then(res => res.json());
+    const dataPromise = fetch(SERVER_URL + `/products?limit=8`).then(res => res.json());
     return (
         <>
             <Title value={`${AppName} - Import, Export, Grow.`}></Title>

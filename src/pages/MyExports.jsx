@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import AddExports from './AddExports';
 import Modal from '../components/Modal';
 import Title from '../components/Title';
+import { FaBoxOpen } from 'react-icons/fa6';
 
 
 export const MyExportsView = ({ dataPromise }) => {
@@ -72,6 +73,22 @@ export const MyExportsView = ({ dataPromise }) => {
         });
     }
 
+    const noExported = <>
+        <div className="flex justify-center">
+            <div className="bg-white border border-base-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center shadow-md max-w-200">
+                <FaBoxOpen className="text-6xl text-primary mb-4" />
+                <h3 className="text-xl font-semibold mb-2">You do not have any exported product</h3>
+                <p className="text-sm opacity-70 mb-4">Start by adding your first product to get started.</p>
+                <Link
+                    to={'/add/exports'}
+                    className="bg-primary text-white px-6 py-2 rounded-xl hover:bg-primary/90 transition"
+                >
+                    Add Product
+                </Link>
+            </div>
+        </div>
+    </>
+
     return (
         <>
             <Title value={`${AppName} - My Exports`}></Title>
@@ -81,7 +98,7 @@ export const MyExportsView = ({ dataPromise }) => {
 
             <div className='my-10'>
                 <div className="container">
-                    {products.length == 0 ? <h2>You do not have any exported product. <Link to="/add/exports" className='text-primary'>Add one</Link></h2> : ""}
+                    {products.length == 0 ? noExported : ""}
                     {products.map(item => <ExportView key={item._id} afterDelete={afterDelete} data={item} onUpdate={onUpdate} onDelete={onDelete} />)}
                 </div>
             </div>
@@ -100,7 +117,7 @@ const MyExports = () => {
         },
         // body: JSON.stringify({ name, photo, price, country, rating, quantity })
     }).then(res => {
-        if (res.status >= 400){
+        if (res.status >= 400) {
             window.location.reload()
         }
         return res.json()

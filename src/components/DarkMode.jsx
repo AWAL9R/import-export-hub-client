@@ -3,7 +3,7 @@ import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi2";
 
 const DarkMode = () => {
 
-    const [dark, setDark] = useState(false)
+    const [dark, setDark] = useState(localStorage.getItem("theme")=='dark')
 
 
     const html = document.documentElement;
@@ -11,6 +11,7 @@ const DarkMode = () => {
 
     const toggleDark = () => {
         setDark(!dark)
+        localStorage.setItem("theme", !dark?'dark':'light')
     }
 
     return (

@@ -11,7 +11,7 @@ const partners = [
 
 export default function TrustedBy() {
   return (
-    <section className="bg-base-100 py-12 px-4 rounded-xl mspace-bottom">
+    <section className="bg-base-100 border border-base-300 py-12 px-4 rounded-xl mspace-both">
       <h2 className="text-3xl font-semibold text-center mb-4">
         Trusted by Global Traders & Partners
       </h2>

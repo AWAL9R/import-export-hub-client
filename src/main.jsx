@@ -24,6 +24,8 @@ import Title from './components/Title';
 // import PrivacyPolicyPage from './pages/PrivacyPolicy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import ProfilePage from './pages/ProfilePage';
+import DashboardPage from './pages/DashboardPage';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
         errorElement: <LoadingError />,
         loader: ({ params }) => fetch(SERVER_URL + `/products/${params.id}`),
         element:  <ProductPage />
+      },
+      {
+        path: "/profile",
+        element: <PrivateComponent> <ProfilePage /> </PrivateComponent>
+      },
+      {
+        path: "/dashboard",
+        element: <PrivateComponent> <DashboardPage /> </PrivateComponent>
       },
       {
         path: "/me/exports",
